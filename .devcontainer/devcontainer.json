@@ -1,0 +1,37 @@
+{
+  "name": "jupyter",
+  "image": "debian:bookworm-slim",
+  "features": {
+    "ghcr.io/julialang/devcontainer-features/julia:latest": {},
+    "ghcr.io/devcontainers/features/anaconda:latest": {},
+    "ghcr.io/devcontainers/features/docker-in-docker": {
+        "version": "latest",
+        "moby": true
+    }
+  },
+  "postCreateCommand": "bash scripts/install-dependencies.sh",
+  "customizations": {
+      "vscode" : {
+          "settings": {
+              "terminal.integrated.profiles.linux": {
+                  "bash": {
+                      "path": "/bin/bash"
+                  }
+              },
+              "terminal.integrated.defaultProfile.linux": "bash",
+              "python.linting.enabled": true,
+              "python.linting.pylintEnabled": true
+          },
+          "extensions": [
+            // Jupyter
+            "ms-toolsai.jupyter",
+            "ms-toolsai.jupyter-renderers",
+            // VS Code specific
+            "ms-azuretools.vscode-docker",
+            "EditorConfig.EditorConfig",
+            // Python specific
+            "ms-python.python",
+          ]
+      }
+  }
+}
